@@ -5,4 +5,11 @@ const toggleHiddenList = val => {
   };
 };
 
+export const addItems = item => {
+  return {
+    type: "ADD_CART_ITEM",
+    payload: item
+  };
+};
+
 export default toggleHiddenList;
