@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { ReactComponent as ShoppingBag } from "../../assets/shopping-bag.svg";
-import "./cart-icon.styles.scss";
 import toggleHiddenList from "./../../redux/cart/cart.action";
+import { selecteCartItemsQuntity } from "../../redux/cart/cart.selectors";
+import "./cart-icon.styles.scss";
 
 class CartIcon extends React.Component {
   handleClick = () => {
@@ -12,7 +13,7 @@ class CartIcon extends React.Component {
     return (
       <div className="cart-icon">
         <ShoppingBag className="shopping-icon" onClick={this.handleClick} />
-        <span className="item-count">0</span>
+        <span className="item-count">{this.props.quantity}</span>
       </div>
     );
   }
@@ -20,7 +21,8 @@ class CartIcon extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    hiddenList: state.cart.hiddenList
+    hiddenList: state.cart.hiddenList,
+    quantity: selecteCartItemsQuntity(state)
   };
 };
 
@@ -30,7 +32,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
