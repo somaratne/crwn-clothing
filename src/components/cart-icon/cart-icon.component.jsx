@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { ReactComponent as ShoppingBag } from "../../assets/shopping-bag.svg";
 import toggleHiddenList from "./../../redux/cart/cart.action";
 import { selecteCartItemsQuntity } from "../../redux/cart/cart.selectors";
+import { selectHiddenList } from "./../../redux/cart/cart.selectors";
 import "./cart-icon.styles.scss";
 
 class CartIcon extends React.Component {
@@ -21,7 +22,7 @@ class CartIcon extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    hiddenList: state.cart.hiddenList,
+    hiddenList: selectHiddenList(state),
     quantity: selecteCartItemsQuntity(state)
   };
 };
