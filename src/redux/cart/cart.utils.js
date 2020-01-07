@@ -10,3 +10,16 @@ export const addCartItems = (cartItems, newItem) => {
     });
   }
 };
+
+export const removeItem = (cartItems, itemId) => {
+  return cartItems.filter(i => i.id !== itemId);
+};
+
+export function increaseCartItems(cartItems, itemId) {
+  return cartItems.map(i => {
+    if (i.id === itemId) {
+      i.quantity += 1;
+    }
+    return i;
+  });
+}
